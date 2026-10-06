@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SmartBakery.API/SmartBakery.API.csproj" />
+    <Project Path="src/SmartBakery.Application/SmartBakery.Application.csproj" />
+    <Project Path="src/SmartBakery.Domain/SmartBakery.Domain.csproj" />
+    <Project Path="src/SmartBakery.Infrastructure/SmartBakery.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SmartBakery.IntegrationTests/SmartBakery.IntegrationTests.csproj" />
+    <Project Path="tests/SmartBakery.UnitTests/SmartBakery.UnitTests.csproj" />
+  </Folder>
+</Solution>

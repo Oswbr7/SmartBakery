@@ -1,0 +1,6 @@
+@SmartBakery.API_HostAddress = https://localhost:5001
+
+GET {{SmartBakery.API_HostAddress}}/health
+Accept: application/json
+
+###

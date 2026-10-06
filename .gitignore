@@ -1,0 +1,42 @@
+# ---------- General ----------
+.env
+*.env.local
+.DS_Store
+Thumbs.db
+*.log
+
+# ---------- IDE ----------
+.vs/
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.user
+*.suo
+
+# ---------- .NET ----------
+bin/
+obj/
+TestResults/
+*.nupkg
+appsettings.Local.json
+
+# ---------- Node / Frontend ----------
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# ---------- Python / ML ----------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+mlruns/
+
+# Modelos y datasets generados (se versionan aparte)
+ml-service/models/**/*.joblib
+ml-service/datasets/**/*.csv
+!ml-service/datasets/**/.gitkeep
