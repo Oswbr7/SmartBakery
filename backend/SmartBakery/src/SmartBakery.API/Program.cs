@@ -1,4 +1,18 @@
+using SmartBakery.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// La cadena de conexión NO está en appsettings.json: vive en user-secrets
+// (desarrollo) o en variables de entorno (otros ambientes).
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        "Connection string 'DefaultConnection' is not configured. " +
+        "Run: dotnet user-secrets set \"ConnectionStrings:DefaultConnection\" \"<connection string>\" --project src/SmartBakery.API");
+}
+
+builder.Services.AddInfrastructure(connectionString);
 
 const string FrontendCorsPolicy = "Frontend";
 

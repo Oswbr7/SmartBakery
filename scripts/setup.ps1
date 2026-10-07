@@ -175,8 +175,13 @@ if ($HasDotnet) {
         }
 
         Write-Step 'Backend .NET: herramienta dotnet-ef (local)'
-        if (-not (Test-Path '.config\dotnet-tools.json')) { Invoke-Native 'dotnet' @('new', 'tool-manifest') }
-        if (-not ((Get-Content '.config\dotnet-tools.json' -Raw) -match '"dotnet-ef"')) {
+        # .NET 10 crea el manifiesto en la raiz (dotnet-tools.json); versiones anteriores en .config\
+        $manifest = @('dotnet-tools.json', '.config\dotnet-tools.json') | Where-Object { Test-Path $_ } | Select-Object -First 1
+        if (-not $manifest) {
+            Invoke-Native 'dotnet' @('new', 'tool-manifest')
+            $manifest = @('dotnet-tools.json', '.config\dotnet-tools.json') | Where-Object { Test-Path $_ } | Select-Object -First 1
+        }
+        if (-not ((Get-Content $manifest -Raw) -match '"dotnet-ef"')) {
             Invoke-Native 'dotnet' @('tool', 'install', 'dotnet-ef')
         }
         Invoke-Native 'dotnet' @('tool', 'restore')
